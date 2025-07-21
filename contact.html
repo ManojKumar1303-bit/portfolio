@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | MANOJ KUMAR U</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark">
+  <header class="portfolio-header">
+    <div class="portfolio-title">MANOJ KUMAR U</div>
+    <nav class="portfolio-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="education.html">Education</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+  </header>
+  <main>
+    <section class="contact-card">
+      <h1>Contact</h1>
+      <p>Feel free to connect with me on any of the platforms below!</p>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" class="contact-icon linkedin" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:manojkumarklr2006@gmail.com" class="contact-icon email" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://wa.me/918220491290" target="_blank" class="contact-icon whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://leetcode.com/your-leetcode" target="_blank" class="contact-icon leetcode" title="LeetCode"><i class="fa-solid fa-code"></i></a>
+        <a href="https://github.com/your-github" target="_blank" class="contact-icon github" title="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+      <form class="feedback-form" action="https://formspree.io/f/yourformid" method="POST">
+        <h2>Send Me Feedback</h2>
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Feedback" required></textarea>
+        <button type="submit">Send Feedback</button>
+      </form>
+    </section>
+    <footer class="portfolio-footer">
+      <span>&copy; 2024 Manoj Kumar.U. All rights reserved.</span>
+    </footer>
+  </main>
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    function applySavedTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        body.classList.remove('dark');
+        body.classList.add('light');
+        themeToggle.textContent = '☀️ Light';
+      } else {
+        body.classList.remove('light');
+        body.classList.add('dark');
+        themeToggle.textContent = '🌙 Dark';
+      }
+    }
+    applySavedTheme();
+    themeToggle.addEventListener('click', () => {
+      if (body.classList.contains('dark')) {
+        body.classList.remove('dark');
+        body.classList.add('light');
+        localStorage.setItem('theme', 'light');
+        themeToggle.textContent = '☀️ Light';
+      } else {
+        body.classList.remove('light');
+        body.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        themeToggle.textContent = '🌙 Dark';
+      }
+    });
+  </script>
+</body>
+</html> 

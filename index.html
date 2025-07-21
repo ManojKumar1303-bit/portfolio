@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MANOJ KUMAR U</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark">
+  <header class="portfolio-header">
+    <div class="portfolio-title">MANOJ KUMAR U</div>
+    <nav class="portfolio-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="education.html">Education</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+  </header>
+  <main>
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="hero-photo">
+          <img src="profile picture for portfolio.jpg" alt="Profile Photo" class="profile-photo" />
+        </div>
+        <div class="hero-text">
+          <h1>MANOJ KUMAR U</h1>
+          <h2>STUDENT | ASPIRING FULL STACK DEVELOPER</h2>
+          <p class="hero-intro">I build user-centric, innovative software solutions. My unique background in Biotechnology and tech allows me to bring fresh perspectives to global projects. Let’s create something amazing together!</p>
+          <a href="contact.html" class="hero-contact-btn">Contact Me</a>
+        </div>
+      </div>
+    </section>
+    <section class="projects-section">
+      <h1>Projects</h1>
+      <div class="projects-list">
+        <div class="project-card">
+          <div class="project-icon"><i class="fas fa-laptop-code"></i></div>
+          <div class="project-details">
+            <h2>Professional Portfolio Website</h2>
+            <p>A modern, responsive portfolio website built with HTML, CSS, and JavaScript. Features dark/light mode, smooth transitions, and a clean, professional design. This site showcases my skills, education, and contact information.</p>
+            <div class="project-tech">
+              <span>HTML</span> <span>CSS</span> <span>JavaScript</span>
+            </div>
+            <a href="https://github.com/your-github/portfolio" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="portfolio-footer">
+      <span>&copy; 2024 Manoj Kumar U. All rights reserved.</span>
+    </footer>
+  </main>
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+  
+    // Apply saved theme on page load
+    function applySavedTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        body.classList.remove('dark');
+        body.classList.add('light');
+        themeToggle.textContent = '☀️ Light';
+      } else {
+        body.classList.remove('light');
+        body.classList.add('dark');
+        themeToggle.textContent = '🌙 Dark';
+      }
+    }
+  
+    applySavedTheme();
+  
+    themeToggle.addEventListener('click', () => {
+      if (body.classList.contains('dark')) {
+        body.classList.remove('dark');
+        body.classList.add('light');
+        localStorage.setItem('theme', 'light');
+        themeToggle.textContent = '☀️ Light';
+      } else {
+        body.classList.remove('light');
+        body.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        themeToggle.textContent = '🌙 Dark';
+      }
+    });
+  </script>
+</body>
+</html> 

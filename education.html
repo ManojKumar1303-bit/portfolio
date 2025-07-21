@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Education | MANOJ KUMAR U</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark">
+  <header class="portfolio-header">
+    <div class="portfolio-title">MANOJ KUMAR U</div>
+    <nav class="portfolio-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="education.html">Education</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+  </header>
+  <main>
+    <section class="education-cards">
+      <h1>Education</h1>
+      <div class="education-list">
+        <div class="education-card">
+          <i class="fas fa-school"></i>
+          <div>
+            <b>High School:</b> GV Higher Secondary School, Mettur<br>
+            <span>Percentage: 80.5%</span>
+          </div>
+        </div>
+        <div class="education-card">
+          <i class="fas fa-university"></i>
+          <div>
+            <b>College:</b> Bannari Amman Institute of Technology, Sathyamangalam<br>
+            <span>CGPA: 7.4</span>
+          </div>
+        </div>
+      </div>
+      <h2>Relevant Coursework & Achievements</h2>
+      <ul class="education-achievements">
+        <li><i class="fas fa-dna"></i> Biotechnology foundation</li>
+        <li><i class="fas fa-laptop-code"></i> Software development basics</li>
+        <li><i class="fas fa-award"></i> Consistent academic performance</li>
+      </ul>
+    </section>
+    <footer class="portfolio-footer">
+      <span>&copy; 2024 Manoj Kumar U. All rights reserved.</span>
+    </footer>
+  </main>
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+  
+    // Apply saved theme on page load
+    function applySavedTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        body.classList.remove('dark');
+        body.classList.add('light');
+        themeToggle.textContent = '☀️ Light';
+      } else {
+        body.classList.remove('light');
+        body.classList.add('dark');
+        themeToggle.textContent = '🌙 Dark';
+      }
+    }
+  
+    applySavedTheme();
+  
+    themeToggle.addEventListener('click', () => {
+      if (body.classList.contains('dark')) {
+        body.classList.remove('dark');
+        body.classList.add('light');
+        localStorage.setItem('theme', 'light');
+        themeToggle.textContent = '☀️ Light';
+      } else {
+        body.classList.remove('light');
+        body.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        themeToggle.textContent = '🌙 Dark';
+      }
+    });
+  </script>
+</body>
+</html> 
