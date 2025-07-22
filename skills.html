@@ -9,22 +9,24 @@
 </head>
 <body class="dark">
   <header class="portfolio-header">
+    <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
     <div class="portfolio-title">MANOJ KUMAR U</div>
-    <nav class="portfolio-nav">
+    <nav class="portfolio-nav" id="portfolioNav">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="skills.html">Skills</a>
       <a href="education.html">Education</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+    <button class="theme-toggle" id="themeToggle">🌙</button>
   </header>
   <main>
     <section class="skills-cards">
       <h1>Technical Skills</h1>
       <div class="skills-list">
         <div class="skill-card"><i class="fas fa-code"></i><span>Java, C</span></div>
-        <div class="skill-card"><i class="fas fa-globe"></i><span>HTML, UI/UX Basics</span></div>
+        <div class="skill-card"><i class="fas fa-globe"></i><span>HTML, CSS</span></div>
+        <div class="skill-card"><i class="fas fa-paint-brush"></i><span>UI/UX Basics</span></div>
         <div class="skill-card"><i class="fas fa-database"></i><span>SQL</span></div>
         <div class="skill-card"><i class="fas fa-users"></i><span>Teamwork</span></div>
         <div class="skill-card"><i class="fas fa-lightbulb"></i><span>Problem Solving</span></div>
@@ -33,7 +35,7 @@
       </div>
     </section>
     <footer class="portfolio-footer">
-      <span>&copy; 2024 Manoj Kumar U. All rights reserved.</span>
+      <span>&copy; 2025 Manoj Kumar U. All rights reserved.</span>
     </footer>
   </main>
   <script>
@@ -46,11 +48,11 @@
       if (savedTheme === 'light') {
         body.classList.remove('dark');
         body.classList.add('light');
-        themeToggle.textContent = '☀️ Light';
+        themeToggle.textContent = '☀️';
       } else {
         body.classList.remove('light');
         body.classList.add('dark');
-        themeToggle.textContent = '🌙 Dark';
+        themeToggle.textContent = '🌙';
       }
     }
   
@@ -61,14 +63,21 @@
         body.classList.remove('dark');
         body.classList.add('light');
         localStorage.setItem('theme', 'light');
-        themeToggle.textContent = '☀️ Light';
+        themeToggle.textContent = '☀️';
       } else {
         body.classList.remove('light');
         body.classList.add('dark');
         localStorage.setItem('theme', 'dark');
-        themeToggle.textContent = '🌙 Dark';
+        themeToggle.textContent = '🌙';
       }
     });
   </script>
+  <script>
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.querySelector('.portfolio-nav');
+menuToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('show');
+});
+</script>
 </body>
 </html> 

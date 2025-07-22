@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About | MANOJ KUMAR U</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body class="dark">
   <header class="portfolio-header">
+    <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
     <div class="portfolio-title">MANOJ KUMAR U</div>
-    <nav class="portfolio-nav">
+    <nav class="portfolio-nav" id="portfolioNav">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="skills.html">Skills</a>
       <a href="education.html">Education</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+    <button class="theme-toggle" id="themeToggle">🌙</button>
   </header>
   <main>
     <section class="about-card">
@@ -32,12 +33,19 @@
           <div class="about-highlight"><i class="fas fa-envelope"></i> manojkumarklr2006@gmail.com</div>
           <div class="about-highlight"><i class="fas fa-language"></i> Native Tamil, Advanced English</div>
         </div>
+
+        <!-- ✅ Resume Download Button -->
+        <br />
+        <a href="My_Resume.pdf" class="hero-contact-btn" download>
+          <i class="fas fa-file-download"></i> Download Resume
+        </a>
       </div>
     </section>
     <footer class="portfolio-footer">
-      <span>&copy; 2024 Manoj Kumar U. All rights reserved.</span>
+      <span>&copy; 2025 Manoj Kumar U. All rights reserved.</span>
     </footer>
   </main>
+
   <script>
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
@@ -48,11 +56,11 @@
       if (savedTheme === 'light') {
         body.classList.remove('dark');
         body.classList.add('light');
-        themeToggle.textContent = '☀️ Light';
+        themeToggle.textContent = '☀️';
       } else {
         body.classList.remove('light');
         body.classList.add('dark');
-        themeToggle.textContent = '🌙 Dark';
+        themeToggle.textContent = '🌙';
       }
     }
 
@@ -63,14 +71,21 @@
         body.classList.remove('dark');
         body.classList.add('light');
         localStorage.setItem('theme', 'light');
-        themeToggle.textContent = '☀️ Light';
+        themeToggle.textContent = '☀️';
       } else {
         body.classList.remove('light');
         body.classList.add('dark');
         localStorage.setItem('theme', 'dark');
-        themeToggle.textContent = '🌙 Dark';
+        themeToggle.textContent = '🌙';
       }
     });
   </script>
+  <script>
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.querySelector('.portfolio-nav');
+menuToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('show');
+});
+</script>
 </body>
-</html> 
+</html>

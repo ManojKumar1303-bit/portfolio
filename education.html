@@ -9,15 +9,16 @@
 </head>
 <body class="dark">
   <header class="portfolio-header">
+    <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
     <div class="portfolio-title">MANOJ KUMAR U</div>
-    <nav class="portfolio-nav">
+    <nav class="portfolio-nav" id="portfolioNav">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="skills.html">Skills</a>
       <a href="education.html">Education</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+    <button class="theme-toggle" id="themeToggle">🌙</button>
   </header>
   <main>
     <section class="education-cards">
@@ -46,7 +47,7 @@
       </ul>
     </section>
     <footer class="portfolio-footer">
-      <span>&copy; 2024 Manoj Kumar U. All rights reserved.</span>
+      <span>&copy; 2025 Manoj Kumar U. All rights reserved.</span>
     </footer>
   </main>
   <script>
@@ -59,11 +60,11 @@
       if (savedTheme === 'light') {
         body.classList.remove('dark');
         body.classList.add('light');
-        themeToggle.textContent = '☀️ Light';
+        themeToggle.textContent = '☀️';
       } else {
         body.classList.remove('light');
         body.classList.add('dark');
-        themeToggle.textContent = '🌙 Dark';
+        themeToggle.textContent = '🌙';
       }
     }
   
@@ -74,14 +75,21 @@
         body.classList.remove('dark');
         body.classList.add('light');
         localStorage.setItem('theme', 'light');
-        themeToggle.textContent = '☀️ Light';
+        themeToggle.textContent = '☀️';
       } else {
         body.classList.remove('light');
         body.classList.add('dark');
         localStorage.setItem('theme', 'dark');
-        themeToggle.textContent = '🌙 Dark';
+        themeToggle.textContent = '🌙';
       }
     });
   </script>
+  <script>
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.querySelector('.portfolio-nav');
+menuToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('show');
+});
+</script>
 </body>
 </html> 
