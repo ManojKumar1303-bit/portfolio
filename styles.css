@@ -671,7 +671,7 @@ main {
     background: none;
     border: none;
     color: #fff;
-    font-size: 2rem;
+    font-size: 1.5rem;
     cursor: pointer;
     margin-right: 1rem;
     margin-left: 0;
@@ -693,13 +693,13 @@ main {
     gap: 1.2rem;
     background: linear-gradient(90deg, #3a6073 0%, #11998e 100%);
     width: 180px;
-    position: fixed;
+    position: absolute;
     left: -200px;
     top: 0;
-    height: 100vh;
+    height: 60vh;
     padding: 4rem 1.2rem 2rem 1.2rem;
     box-shadow: 4px 0 24px rgba(0,0,0,0.10);
-    align-items: flex-start;
+    align-items: flex-start; 
     border-radius: 0 16px 16px 0;
     z-index: 150;
     transition: left 0.3s cubic-bezier(.4,2,.6,1);
@@ -787,6 +787,8 @@ main {
 @media (max-width: 768px) {
   .portfolio-nav {
     left: -250px; /* Hide completely */
+    height: auto;
+    padding: 5rem 1rem 0.5rem 1rem;
     box-shadow: none;
   }
   .portfolio-nav.show {
