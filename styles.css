@@ -854,3 +854,25 @@ main {
 .project-links a:hover {
   color: #008080;
 }
+@media (max-width: 768px) {
+  .project-card {
+    flex-direction: column; /* stack image on top of text */
+    text-align: center;
+  }
+
+  .project-icon img {
+    width: 90%;        /* take most of screen width */
+    max-width: 400px;  /* bigger max size */
+    height: auto;      /* keep aspect ratio */
+    margin-bottom: 15px;
+  }
+
+  .project-content {
+    text-align: center;
+  }
+
+  .project-tags span {
+    display: inline-block;
+    margin: 4px;
+  }
+}
