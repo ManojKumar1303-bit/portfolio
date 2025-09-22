@@ -845,7 +845,7 @@ main {
 }
 
 .project-links a {
-  margin-right: 16px;
+  margin-right: 10px;
   text-decoration: none;
   color: #333;
   font-weight: 500;
@@ -861,9 +861,10 @@ main {
   }
 
   .project-icon img {
-    width: 90%;        /* take most of screen width */
+    margin-left: -55px;
+    width: 150px;        /* take most of screen width */
     max-width: 400px;  /* bigger max size */
-    height: auto;      /* keep aspect ratio */
+    height: 75px;      /* keep aspect ratio */
     margin-bottom: 15px;
   }
 
