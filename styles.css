@@ -136,7 +136,7 @@ main {
 .hero-intro {
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
-  color: #c0bebe;
+  color: #9b9999;
 }
 .hero-contact-btn {
   display: inline-block;
@@ -407,7 +407,7 @@ main {
   align-items: center;
   gap: 0.5rem;
   color: #333;
-  background: #e0f7fa;
+  background: #b0f3fc;
   border-radius: 8px;
   padding: 0.5rem 1.2rem;
   font-weight: 600;
