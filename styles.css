@@ -877,3 +877,142 @@ main {
     margin: 4px;
   }
 }
+html{
+  scroll-behavior: smooth;
+}
+/* --- Global & Background Setup --- */
+:root {
+    --dark-bg: #1a1a2e;
+    --accent-color: #e94560;
+    --transition-speed: 0.6s; 
+}
+
+/* FIX: Prevent initial scroll *and* content flash */
+body {
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: hidden; /* Start by preventing scrolling */
+    background-color: var(--dark-bg);
+}
+
+/* FIX: Hide main content using visibility/opacity, not padding-top */
+#main-content {
+    opacity: 0;
+    /* Use position: relative so it doesn't take up space when intro is running, 
+       but maintains document flow */
+    position: relative; 
+    transition: opacity 1s ease-out;
+    /* Ensure the content is styled correctly */
+    min-height: 100vh; 
+}
+
+/* --- Intro Sequence Container (The only element on screen initially) --- */
+#intro-sequence {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--dark-bg);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Use 'all' transition for the final fade out */
+    transition: all var(--transition-speed) ease-in-out; 
+    color: white;
+}
+
+/* FIX: Added a subtle animated background (3D effect) */
+#intro-sequence::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Subtle radial gradient background */
+    background: radial-gradient(circle at center, rgba(50, 50, 80, 0.5) 0%, rgba(26, 26, 46, 1) 100%);
+    animation: slowZoom 20s infinite alternate;
+    z-index: -1; 
+}
+
+@keyframes slowZoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+
+.stage {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Animation Control: Starts zoomed out, fades out */
+    opacity: 0;
+    transform: scale(0.6); 
+    transition: opacity var(--transition-speed) ease-in-out, transform var(--transition-speed) ease-in-out;
+    pointer-events: none;
+}
+
+/* FIX: Zoom in effect for the active stage */
+.stage.active {
+    opacity: 1;
+    transform: scale(1); /* Zooms into full size */
+    pointer-events: auto;
+}
+
+/* ... keep the rest of your logo-mk and astroid-spinner CSS ... */
+/* --- Stage 1: MK Logo & Astroid Spinner --- */
+.logo-mk {
+    font-size: 6em; /* Slightly larger */
+    font-family: 'Arial Black', sans-serif;
+    color: var(--accent-color);
+    /* MODIFICATION: Stronger, more defined white/pink glow */
+    text-shadow: 0 0 10px rgba(233, 69, 96, 0.9), 0 0 20px rgba(255, 255, 255, 0.2); 
+    z-index: 10;
+}
+.astroid-spinner {
+    position: absolute;
+    width: 170%; /* MODIFICATION: Wider path for the "astroid" */
+    height: 170%;
+    border: 3px solid var(--accent-color); /* MODIFICATION: Thinner line */
+    border-radius: 50%;
+    border-top-color: transparent; 
+    /* MODIFICATION: Add a background color for a faint disc look */
+    box-shadow: 0 0 10px rgba(233, 69, 96, 0.5); 
+    animation: spin 3s linear infinite; /* MODIFICATION: Slower, smoother spin */
+    transform-style: preserve-3d;
+    transform: rotateX(60deg); 
+    opacity: 0.8;
+}
+
+@keyframes spin {
+    /* MODIFICATION: Only rotate on Y-axis for a fixed orbit perspective */
+    to { transform: rotateY(360deg) rotateX(60deg); } 
+}
+/* --- Stage 2 & 3: Text Styling --- */
+.welcome-text, .explore-text {
+    font-size: 5em; /* Slightly larger text */
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    /* MODIFICATION: Subtle animation fade-in */
+    animation: textEntry 1.5s ease-out; 
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+}
+
+/* NEW KEYFRAMES: for text */
+@keyframes textEntry {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}

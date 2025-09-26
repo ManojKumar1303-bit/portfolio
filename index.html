@@ -1,124 +1,351 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MANOJ KUMAR U</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MANOJ KUMAR U</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- Root Variables and Global Resets --- */
+        :root {
+            --dark-bg: #1a1a2e;
+            --accent-color: #e94560;
+            --transition-speed: 0.6s; 
+        }
+
+        body {
+            margin: 0;
+            overflow-x: hidden;
+            overflow-y: hidden; /* FIX: Prevents scrolling during intro */
+            background-color: var(--dark-bg);
+        }
+
+        /* --- Main Content Container (Starts hidden) --- */
+        #main-content {
+            opacity: 0;
+            position: relative; 
+            transition: opacity 1s ease-out;
+            min-height: 100vh; 
+        }
+
+        /* --- Intro Sequence Container (Fixed Overlay) --- */
+        #intro-sequence {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--dark-bg);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all var(--transition-speed) ease-in-out; 
+            color: white;
+        }
+
+        /* Animated Background */
+        #intro-sequence::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(50, 50, 80, 0.5) 0%, rgba(26, 26, 46, 1) 100%);
+            animation: slowZoom 20s infinite alternate;
+            z-index: -1; 
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        /* --- Individual Stage Styling --- */
+        .stage {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            /* Start zoomed out and hidden */
+            opacity: 0;
+            transform: scale(0.6); 
+            transition: opacity var(--transition-speed) ease-in-out, transform var(--transition-speed) ease-in-out;
+            pointer-events: none;
+        }
+
+        /* Active stage zooms in to full screen */
+        .stage.active {
+            opacity: 1;
+            transform: scale(1); 
+            pointer-events: auto;
+        }
+
+        /* --- Stage 1: MK Logo & Astroid Spinner --- */
+        .logo-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+            height: 150px;
+        }
+        .logo-mk {
+            font-size: 5em;
+            font-family: 'Arial Black', sans-serif;
+            color: var(--accent-color);
+            text-shadow: 0 0 10px rgba(233, 69, 96, 0.7);
+            z-index: 10;
+        }
+        .astroid-spinner {
+            position: absolute;
+            width: 150%; 
+            height: 150%;
+            border: 5px solid var(--accent-color);
+            border-radius: 50%;
+            border-top-color: transparent; 
+            animation: spin 2s linear infinite;
+            transform-style: preserve-3d;
+            transform: rotateX(70deg); 
+            opacity: 0.8;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg) rotateX(70deg); }
+        }
+
+        /* --- Stage 2 & 3: Text Styling --- */
+        .welcome-text, .explore-text {
+            font-size: 4em;
+            text-align: center;
+            font-family: sans-serif;
+            color: white;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+    </style>
 </head>
 <body class="dark">
-  <header class="portfolio-header">
-    <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
-    <div class="portfolio-title">MANOJ KUMAR U</div>
-    <nav class="portfolio-nav" id="portfolioNav">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="skills.html">Skills</a>
-      <a href="education.html">Education</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <button class="theme-toggle" id="themeToggle">🌙</button>
-  </header>
-  <main>
-    <section class="hero-section">
-      <div class="hero-content">
-        <div class="hero-photo">
-          <img src="profile picture for portfolio.jpg" alt="Profile Photo" class="profile-photo" />
-        </div>
-        <div class="hero-text">
-          <h1>MANOJ KUMAR U</h1>
-          <h2>STUDENT | ASPIRING FULL STACK DEVELOPER</h2>
-          <p class="hero-intro">I build user-centric, innovative software solutions. My unique background in Biotechnology and tech allows me to bring fresh perspectives to global projects. Let’s create something amazing together!</p>
-          <a href="contact.html" class="hero-contact-btn">Contact Me</a>
-        </div>
-      </div>
-    </section>
-    <section class="projects-section">
-      <h1>Projects</h1>
-      <div class="projects-list">
-        <div class="project-card">
-          <div class="project-icon"><img src="port.png" alt="Leaderboard Project" /></div>
-          <div class="project-details">
-            <h2>Professional Portfolio Website</h2>
-            <p>A modern, responsive portfolio website built with HTML, CSS, and JavaScript. Features dark/light mode, smooth transitions, and a clean, professional design. This site showcases my skills, education, and contact information.</p>
-            <div class="project-tech">
-              <span>HTML</span> <span>CSS</span> <span>JavaScript</span>
+    <div id="intro-sequence">
+        <div class="stage" id="stage-1">
+            <div class="logo-container">
+                <h1 class="logo-mk">MK</h1>
+                <div class="astroid-spinner"></div>
             </div>
-            <a href="https://github.com/ManojKumar1303-bit/portfolio" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+        </div>
+        <div class="stage" id="stage-2">
+            <h2 class="welcome-text">Welcome to my portfolio</h2>
+        </div>
+        <div class="stage" id="stage-3">
+            <h2 class="explore-text">Ready to explore my projects</h2>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <header class="portfolio-header">
+            <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+            <div class="portfolio-title">MANOJ KUMAR U</div>
+            <nav class="portfolio-nav" id="portfolioNav">
+                <a href="#top" id="homeLink">Home</a>
+                <a href="about.html">About</a>
+                <a href="skills.html">Skills</a>
+                <a href="education.html">Education</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="theme-toggle" id="themeToggle">🌙</button>
+        </header>
+        <main>
+            <section class="hero-section">
+                <div class="hero-content">
+                    <div class="hero-photo">
+                        <img src="profile picture for portfolio.jpg" alt="Profile Photo" class="profile-photo" />
+                    </div>
+                    <div class="hero-text">
+                        <h1>MANOJ KUMAR U</h1>
+                        <h2>STUDENT | ASPIRING FULL STACK DEVELOPER</h2>
+                        <p class="hero-intro">I build user-centric, innovative software solutions. My unique background in Biotechnology and tech allows me to bring fresh perspectives to global projects. Let’s create something amazing together!</p>
+                        <a href="contact.html" class="hero-contact-btn">Contact Me</a>
+                    </div>
+                </div>
+            </section>
+            <section class="projects-section">
+                <h1>Projects</h1>
+                <div class="projects-list">
+                    <div class="project-card">
+                        <div class="project-icon"><img src="port.png" alt="Leaderboard Project" /></div>
+                        <div class="project-details">
+                            <h2>Professional Portfolio Website</h2>
+                            <p>A modern, responsive portfolio website built with HTML, CSS, and JavaScript. Features dark/light mode, smooth transitions, and a clean, professional design. This site showcases my skills, education, and contact information.</p>
+                            <div class="project-tech">
+                                <span>HTML</span> <span>CSS</span> <span>JavaScript</span>
+                            </div>
+                            <a href="https://github.com/ManojKumar1303-bit/portfolio" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-card"> 
+                        <div class="project-icon"><img src="climate.png" alt="Leaderboard Project" /></div>
+                        <div class="project-details">
+                            <h2>Weather Web App</h2>
+                            <p>A dynamic weather application that provides real-time weather information. Features include current weather conditions, temperature, humidity, wind speed, and location-based weather data. Built with modern web technologies for a responsive user experience.</p>
+                            <div class="project-tech">
+                                <span>HTML</span> <span>CSS</span> <span>JavaScript</span>
+                            </div>
+                            <a href="https://github.com/ManojKumar1303-bit/Weather-app" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                            <a href="https://climonow.netlify.app/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                    <div class="project-card"> 
+                        <div class="project-icon"><img src="leaderboard.png" alt="Leaderboard Project" /></div>
+                        <div class="project-details">
+                            <h2>College Event Live Leaderboard</h2>
+                            <p>A real-time leaderboard website built for my college event. It allows the audience to view live team rankings, while the admin (me) can securely update scores from a protected panel.</p>
+                            <div class="project-tech">
+                                <span>HTML</span> <span>CSS</span> <span>JavaScript</span> <span>Firebase</span>
+                            </div>
+                            <a href="https://github.com/ManojKumar1303-bit/Aura_leaderboard" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
+                            <a href="https://auralead.netlify.app/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer class="portfolio-footer">
+                </footer>
+        </main>
+    </div>
+
+    <script>
+        // --- THEME TOGGLE SCRIPT ---
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+    
+        function applySavedTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                body.classList.remove('dark');
+                body.classList.add('light');
+                themeToggle.textContent = '☀️';
+            } else {
+                body.classList.remove('light');
+                body.classList.add('dark');
+                themeToggle.textContent = '🌙';
+            }
+        }
+    
+        applySavedTheme();
+    
+        themeToggle.addEventListener('click', () => {
+            if (body.classList.contains('dark')) {
+                body.classList.remove('dark');
+                body.classList.add('light');
+                localStorage.setItem('theme', 'light');
+                themeToggle.textContent = '☀️';
+            } else {
+                body.classList.remove('light');
+                body.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.textContent = '🌙';
+            }
+        });
+
+        // --- MENU TOGGLE SCRIPT ---
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.querySelector('.portfolio-nav');
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+
+        // --- FIX: Home Link Smooth Scroll ---
+        const homeLink = document.getElementById('homeLink');
+        if (homeLink) {
+            homeLink.addEventListener('click', (e) => {
+                // Check if the link points to the current page (index.html)
+                if (window.location.pathname === '/' || window.location.pathname.endsWith('/index.html')) {
+                    e.preventDefault(); // Stop the full page reload 🛑
+                    
+                    // Smoothly scroll to the top of the main content
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        }
+        
+        // --- 3-STAGE INTRO ANIMATION SCRIPT (REVISED FOR RUN-ONCE) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const introSequence = document.getElementById('intro-sequence');
+            const mainContent = document.getElementById('main-content');
             
-          </div>
-        </div>
-        <div class="project-card"> 
-          <div class="project-icon"><img src="climate.png" alt="Leaderboard Project" /></div>
-          <div class="project-details">
-            <h2>Weather Web App</h2>
-            <p>A dynamic weather application that provides real-time weather information. Features include current weather conditions, temperature, humidity, wind speed, and location-based weather data. Built with modern web technologies for a responsive user experience.</p>
-            <div class="project-tech">
-              <span>HTML</span> <span>CSS</span> <span>JavaScript</span>
-            </div>
-            <a href="https://github.com/ManojKumar1303-bit/Weather-app" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
-            <a href="https://climonow.netlify.app/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-          </div>
-        </div>
-         <div class="project-card"> 
-          <div class="project-icon"><img src="leaderboard.png" alt="Leaderboard Project" /></div>
-          <div class="project-details">
-            <h2>College Event Live Leaderboard</h2>
-            <p>A real-time leaderboard website built for my college event. It allows the audience to view live team rankings, while the admin (me) can securely update scores from a protected panel.</p>
-            <div class="project-tech">
-              <span>HTML</span> <span>CSS</span> <span>JavaScript</span> <span>Firebase</span>
-            </div>
-            <a href="https://github.com/ManojKumar1303-bit/Aura_leaderboard" target="_blank" class="project-link"><i class="fab fa-github"></i> View on GitHub</a>
-            <a href="https://auralead.netlify.app/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <footer class="portfolio-footer">
-      
-    </footer>
-  </main>
-  <script>
-    const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
-  
-    // Apply saved theme on page load
-    function applySavedTheme() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'light') {
-        body.classList.remove('dark');
-        body.classList.add('light');
-        themeToggle.textContent = '☀️';
-      } else {
-        body.classList.remove('light');
-        body.classList.add('dark');
-        themeToggle.textContent = '🌙';
-      }
-    }
-  
-    applySavedTheme();
-  
-    themeToggle.addEventListener('click', () => {
-      if (body.classList.contains('dark')) {
-        body.classList.remove('dark');
-        body.classList.add('light');
-        localStorage.setItem('theme', 'light');
-        themeToggle.textContent = '☀️';
-      } else {
-        body.classList.remove('light');
-        body.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-        themeToggle.textContent = '🌙';
-      }
-    });
-  </script>
-  <script>
-const menuToggle = document.getElementById('menuToggle');
-const navMenu = document.querySelector('.portfolio-nav');
-menuToggle.addEventListener('click', () => {
-  navMenu.classList.toggle('show');
-});
-</script>
+            // FIX 1: Run-once check using sessionStorage
+            const HAS_RUN = sessionStorage.getItem('intro_completed');
+            
+            if (HAS_RUN === 'true') {
+                // Skip animation, show content immediately, and enable scrolling
+                if (introSequence) introSequence.style.display = 'none';
+                if (mainContent) mainContent.style.opacity = '1';
+                document.body.style.overflowY = 'auto'; 
+                return; 
+            }
+
+            const STAGE_DURATION = 2500; // 2.2 seconds per stage
+            const FINAL_FADE_DURATION = 400; // 0.6 seconds for the final transition
+
+            const stages = [
+                document.getElementById('stage-1'),
+                document.getElementById('stage-2'),
+                document.getElementById('stage-3')
+            ];
+            
+            let currentStageIndex = 0;
+
+            // Start with the first stage active
+            if (stages[0]) stages[0].classList.add('active'); 
+
+            const transitionStage = () => {
+                if (currentStageIndex < stages.length) {
+                    // Deactivate the previous stage
+                    if (currentStageIndex > 0 && stages[currentStageIndex - 1]) {
+                        stages[currentStageIndex - 1].classList.remove('active');
+                    }
+
+                    // Activate the current stage (zooms in)
+                    if (stages[currentStageIndex]) {
+                        stages[currentStageIndex].classList.add('active');
+                    }
+                    
+                    currentStageIndex++;
+                    setTimeout(transitionStage, STAGE_DURATION);
+
+                } else {
+                    // --- Final Step: Transition to Main Content ---
+
+                    // A. Final Zoom-out/Fade-out of the intro container
+                    if (introSequence) {
+                        introSequence.style.transform = 'scale(1.2)'; 
+                        introSequence.style.opacity = '0';
+                    }
+                    
+                    // B. Reveal the main portfolio content (Fades in)
+                    if (mainContent) mainContent.style.opacity = '1';
+
+                    // C. Mark intro as complete for this session
+                    sessionStorage.setItem('intro_completed', 'true');
+                    
+                    // D. After the fade is complete, remove the container and re-enable scroll
+                    setTimeout(() => {
+                        if (introSequence) introSequence.style.display = 'none';
+                        document.body.style.overflowY = 'auto'; // Re-enable scrolling
+                    }, FINAL_FADE_DURATION);
+                }
+            };
+
+            // Start the sequence after a slight delay
+            setTimeout(transitionStage, 50); 
+        });
+    </script>
 </body>
-</html> 
+</html>
