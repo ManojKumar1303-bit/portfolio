@@ -984,7 +984,7 @@ body {
     border-top-color: transparent; 
     /* MODIFICATION: Add a background color for a faint disc look */
     box-shadow: 0 0 10px rgba(233, 69, 96, 0.5); 
-    animation: spin 3s linear infinite; /* MODIFICATION: Slower, smoother spin */
+    animation: spin 1s linear infinite; /* MODIFICATION: Slower, smoother spin */
     transform-style: preserve-3d;
     transform: rotateX(60deg); 
     opacity: 0.8;
@@ -1001,7 +1001,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
     /* MODIFICATION: Subtle animation fade-in */
-    animation: textEntry 1.5s ease-out; 
+    animation: textEntry 1s ease-out; 
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
 }
 
